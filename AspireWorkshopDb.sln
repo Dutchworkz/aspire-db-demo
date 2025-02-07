@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireWorkshopDb.Web", "AspireWorkshopDb.Web\AspireWorkshopDb.Web.csproj", "{17DF003C-9E1C-44B2-B9F8-65A44AB83B93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireWorkshopDb.Data", "AspireWorkshopDb.Data\AspireWorkshopDb.Data.csproj", "{A984D0ED-3174-4ED8-B6F0-E5F8173F2472}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17DF003C-9E1C-44B2-B9F8-65A44AB83B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17DF003C-9E1C-44B2-B9F8-65A44AB83B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17DF003C-9E1C-44B2-B9F8-65A44AB83B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17DF003C-9E1C-44B2-B9F8-65A44AB83B93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A984D0ED-3174-4ED8-B6F0-E5F8173F2472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A984D0ED-3174-4ED8-B6F0-E5F8173F2472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A984D0ED-3174-4ED8-B6F0-E5F8173F2472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A984D0ED-3174-4ED8-B6F0-E5F8173F2472}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

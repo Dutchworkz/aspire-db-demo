@@ -1,0 +1,91 @@
+﻿@page "/music"
+@using AspireWorkshopDb.Data
+@using AspireWorkshopDb.Data.Models
+@using Microsoft.EntityFrameworkCore
+@attribute [StreamRendering(true)]
+@attribute [OutputCache(Duration = 5)]
+
+@inject CollectionContext context
+
+<div style="display: flex; flex-direction: row; gap: 20px;">
+    <div style="flex: 2; overflow-y: auto;">
+        <div>
+            <h1 class="display-6">Music Collection</h1>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th style="width: 200px;">Artist</th>
+                <th>Song Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (!Songs.Any())
+            {
+                <tr>
+                    <td colspan="2">No songs available.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var song in Songs)
+                {
+                    <tr>
+                        <td>@song.Artist</td>
+                        <td>@song.Name</td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <div style="flex: 1;max-width: 600px; height: 400px; padding-top:50; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+        <div>
+            <h1 class="display-6">Add Song</h1>
+        </div>
+        <EditForm Model="@Song" FormName="Songs" method="post"
+                  OnValidSubmit="@HandleValidSubmit" class="mb-4">
+            <DataAnnotationsValidator/>
+            <div class="mb-4">
+                <label>Artist</label>
+                <InputText class="form-control" @bind-Value="@Song.Artist"/>
+                <ValidationMessage For="() => Song.Artist"/>
+            </div>
+            <div class="mb-4">
+                <label>Name</label>
+                <InputText class="form-control" @bind-Value="@Song.Name"/>
+                <ValidationMessage For="() => Song.Name"/>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-danger mx-2" type="reset" @onclick=@ClearForm>Clear</button>
+        </EditForm>
+
+    </div>
+</div>
+
+
+@code {
+    [SupplyParameterFromForm(FormName = "Songs")]
+    private Song Song { get; set; } = new();
+
+    private List<Song> Songs = [];
+
+    private void ClearForm() => Song = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Songs = await context.Songs.ToListAsync();
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        context.Songs.Add(Song);
+
+        await context.SaveChangesAsync();
+
+        Songs = await context.Songs.ToListAsync();
+
+        ClearForm();
+    }
+}
